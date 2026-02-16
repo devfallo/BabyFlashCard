@@ -38,6 +38,20 @@ python3 -m http.server 4173
    - 프로젝트 저장소: `https://<GitHub사용자명>.github.io/BabyFlashCard/`
    - 사용자/조직 저장소(`<GitHub사용자명>.github.io`): `https://<GitHub사용자명>.github.io/`
 
+
+## FAQ: `devfallo.github.io`는 왜 되고, `main` 브랜치는 안 되나요?
+- `https://devfallo.github.io/NewsNaverSendTelegram/` 형태는 **프로젝트 페이지(Project Pages)** 입니다.
+  - 보통 저장소 이름이 `NewsNaverSendTelegram`이고, URL 경로에 저장소명이 붙습니다.
+- `https://devfallo.github.io/` 루트 도메인은 **사용자 페이지(User Pages)** 입니다.
+  - 이 주소를 루트로 쓰려면 저장소 이름이 정확히 `devfallo.github.io`여야 합니다.
+
+GitHub Pages는 아래 2가지 방식 중 하나로 배포됩니다.
+1. **Deploy from a branch**: `main`/`gh-pages` 중 선택한 브랜치 + 폴더(`/` 또는 `/docs`)
+2. **GitHub Actions**: 워크플로가 빌드 결과를 Pages 아티팩트로 배포
+
+즉, **반드시 `gh-pages` 브랜치여야 하는 것은 아닙니다.** `main`에서도 가능합니다.
+핵심은 저장소의 **Settings → Pages**에서 어떤 소스를 배포 대상으로 지정했는지입니다.
+
 ## 추후 확장 포인트
 - `app.js`의 `cards` 구조를 JSON/API 기반으로 분리
 - 영어 고정 대신 기준 언어 선택 UI 추가
