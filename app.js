@@ -91,17 +91,17 @@ const browserLanguage = (navigator.language || 'en').toLowerCase();
 const languageCode = browserLanguage.split('-')[0];
 const selectedLanguage = dictionaries[languageCode] || dictionaries.ko;
 
-const categoryScreenEl = document.getElementById('category-screen');
-const categoryGridEl = document.getElementById('category-grid');
-const flashScreenEl = document.getElementById('flash-screen');
-const currentCategoryEl = document.getElementById('current-category');
-const cardWrapEl = document.getElementById('card-wrap');
-const cardEl = document.getElementById('card');
-const imageEl = document.getElementById('word-image');
-const enEl = document.getElementById('word-en');
-const localEl = document.getElementById('word-local');
-const infoEl = document.getElementById('language-info');
-const changeCategoryBtn = document.getElementById('change-category');
+let categoryScreenEl;
+let categoryGridEl;
+let flashScreenEl;
+let currentCategoryEl;
+let cardWrapEl;
+let cardEl;
+let imageEl;
+let enEl;
+let localEl;
+let infoEl;
+let changeCategoryBtn;
 
 let currentCategory = null;
 let currentCards = [];
@@ -181,29 +181,87 @@ function renderCategories() {
     categoryGridEl.appendChild(button);
   });
 }
-
-document.getElementById('prev').addEventListener('click', () => move(-1));
-document.getElementById('next').addEventListener('click', () => move(1));
-changeCategoryBtn.addEventListener('click', showCategoryScreen);
-
-document.addEventListener('keydown', (event) => {
-  if (flashScreenEl.classList.contains('hidden')) return;
-  if (event.key === 'ArrowLeft') move(-1);
-  if (event.key === 'ArrowRight') move(1);
-});
-
-cardWrapEl.addEventListener('pointerdown', (event) => {
-  startX = event.clientX;
-});
-
-cardWrapEl.addEventListener('pointerup', (event) => {
-  const deltaX = event.clientX - startX;
+function handleSwipe(endX) {
+  const deltaX = endX - startX;
   const threshold = 45;
 
   if (Math.abs(deltaX) < threshold) return;
   if (deltaX < 0) move(1);
   if (deltaX > 0) move(-1);
-});
+}
 
-renderCategories();
-showCategoryScreen();
+function initSwipeEvents() {
+  cardWrapEl.addEventListener('pointerdown', (event) => {
+    startX = event.clientX;
+  });
+
+  cardWrapEl.addEventListener('pointerup', (event) => {
+    handleSwipe(event.clientX);
+  });
+
+  cardWrapEl.addEventListener(
+    'touchstart',
+    (event) => {
+      startX = event.changedTouches[0].clientX;
+    },
+    { passive: true },
+  );
+
+  cardWrapEl.addEventListener(
+    'touchend',
+    (event) => {
+      handleSwipe(event.changedTouches[0].clientX);
+    },
+    { passive: true },
+  );
+}
+
+function init() {
+  categoryScreenEl = document.getElementById('category-screen');
+  categoryGridEl = document.getElementById('category-grid');
+  flashScreenEl = document.getElementById('flash-screen');
+  currentCategoryEl = document.getElementById('current-category');
+  cardWrapEl = document.getElementById('card-wrap');
+  cardEl = document.getElementById('card');
+  imageEl = document.getElementById('word-image');
+  enEl = document.getElementById('word-en');
+  localEl = document.getElementById('word-local');
+  infoEl = document.getElementById('language-info');
+  changeCategoryBtn = document.getElementById('change-category');
+
+  if (
+    !categoryScreenEl ||
+    !categoryGridEl ||
+    !flashScreenEl ||
+    !currentCategoryEl ||
+    !cardWrapEl ||
+    !cardEl ||
+    !imageEl ||
+    !enEl ||
+    !localEl ||
+    !infoEl ||
+    !changeCategoryBtn
+  ) {
+    return;
+  }
+
+  document.getElementById('prev').addEventListener('click', () => move(-1));
+  document.getElementById('next').addEventListener('click', () => move(1));
+  changeCategoryBtn.addEventListener('click', showCategoryScreen);
+
+  document.addEventListener('keydown', (event) => {
+    if (flashScreenEl.classList.contains('hidden')) return;
+    if (event.key === 'ArrowLeft') move(-1);
+    if (event.key === 'ArrowRight') move(1);
+  });
+
+  initSwipeEvents();
+  renderCategories();
+  showCategoryScreen();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
