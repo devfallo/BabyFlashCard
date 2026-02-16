@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 240'>
+  <rect width='320' height='240' rx='24' fill='#ffedd5'/>
+  <circle cx='160' cy='120' r='52' fill='#fbbf24'/>
+  <g stroke='#f59e0b' stroke-width='10' stroke-linecap='round'>
+    <path d='M160 38v22'/><path d='M160 180v22'/><path d='M78 120h22'/><path d='M220 120h22'/>
+    <path d='M102 62l15 15'/><path d='M203 163l15 15'/><path d='M218 62l-15 15'/><path d='M117 163l-15 15'/>
+  </g>
+</svg>
