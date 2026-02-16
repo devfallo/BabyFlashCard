@@ -19,7 +19,7 @@ body {
 }
 
 .app {
-  width: min(720px, 92vw);
+  width: min(860px, 94vw);
   margin: 0 auto;
   padding: 2rem 0 2.5rem;
 }
@@ -34,11 +34,80 @@ header {
   color: #475569;
 }
 
+.hidden {
+  display: none;
+}
+
+.category-screen h2 {
+  text-align: center;
+  margin: 0 0 0.4rem;
+}
+
+.category-description {
+  text-align: center;
+  margin: 0 0 1rem;
+  color: #475569;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+}
+
+.category-btn {
+  border: 0;
+  border-radius: 14px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.9rem 0.75rem;
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 160ms ease;
+}
+
+.category-btn:hover,
+.category-btn:focus-visible {
+  transform: translateY(-1px);
+  background: #cbd5e1;
+}
+
+.flash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  gap: 0.75rem;
+}
+
+.ghost-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+  background: #e2e8f0;
+  color: #1e293b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.current-category {
+  margin: 0;
+  font-weight: 700;
+  color: #334155;
+}
+
 .card-wrap {
   perspective: 1000px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: pan-y;
 }
 
 .card {
+  width: min(720px, 100%);
   background: var(--card);
   border-radius: 24px;
   box-shadow: 0 20px 40px rgb(15 23 42 / 15%);
@@ -106,21 +175,30 @@ header {
   text-align: center;
 }
 
-.controls {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 85%);
+  color: #f8fafc;
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 }
 
-.controls button {
-  border: none;
-  border-radius: 12px;
-  padding: 0.7rem 1.2rem;
-  background: #0f172a;
-  color: #f8fafc;
-  font-weight: 600;
-  cursor: pointer;
+.nav-arrow.prev {
+  left: 10px;
+}
+
+.nav-arrow.next {
+  right: 10px;
 }
 
 @keyframes pulse {
@@ -141,5 +219,21 @@ header {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    width: min(98vw, 860px);
+  }
+
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flash-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

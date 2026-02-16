@@ -13,23 +13,35 @@
         <p id="language-info"></p>
       </header>
 
-      <section class="card-wrap" aria-live="polite">
-        <article class="card" id="card">
-          <div class="image-panel">
-            <img id="word-image" src="" alt="" />
-          </div>
-          <div class="text-panel">
-            <button class="word word-en" id="word-en" type="button"></button>
-            <button class="word word-local" id="word-local" type="button"></button>
-            <p class="hint">Tap either word to hear native pronunciation.</p>
-          </div>
-        </article>
+      <section id="category-screen" class="category-screen" aria-label="Category selection">
+        <h2>카테고리를 골라요</h2>
+        <p class="category-description">원하는 주제를 선택하면 단어 카드를 시작할 수 있어요.</p>
+        <div class="category-grid" id="category-grid"></div>
       </section>
 
-      <nav class="controls">
-        <button id="prev" type="button">◀ Prev</button>
-        <button id="next" type="button">Next ▶</button>
-      </nav>
+      <section id="flash-screen" class="flash-screen hidden" aria-live="polite">
+        <div class="flash-header">
+          <button id="change-category" class="ghost-btn" type="button">← 카테고리 다시 선택</button>
+          <p id="current-category" class="current-category"></p>
+        </div>
+
+        <section class="card-wrap" id="card-wrap" aria-label="Word card slider">
+          <button id="prev" class="nav-arrow prev" type="button" aria-label="Previous card">&lt;</button>
+
+          <article class="card" id="card">
+            <div class="image-panel">
+              <img id="word-image" src="" alt="" />
+            </div>
+            <div class="text-panel">
+              <button class="word word-en" id="word-en" type="button"></button>
+              <button class="word word-local" id="word-local" type="button"></button>
+              <p class="hint">Tap either word to hear native pronunciation.</p>
+            </div>
+          </article>
+
+          <button id="next" class="nav-arrow next" type="button" aria-label="Next card">&gt;</button>
+        </section>
+      </section>
     </main>
 
     <script src="app.js" defer></script>
