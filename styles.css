@@ -1,0 +1,145 @@
+:root {
+  --bg: #f7fbff;
+  --card: #ffffff;
+  --text: #1f2a37;
+  --primary: #2563eb;
+  --secondary: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Noto Sans', 'Apple SD Gothic Neo', 'Yu Gothic', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #dbeafe, var(--bg));
+  color: var(--text);
+}
+
+.app {
+  width: min(720px, 92vw);
+  margin: 0 auto;
+  padding: 2rem 0 2.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#language-info {
+  margin-top: 0.4rem;
+  color: #475569;
+}
+
+.card-wrap {
+  perspective: 1000px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgb(15 23 42 / 15%);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 400ms ease, box-shadow 300ms ease;
+  animation: floatIn 450ms ease;
+}
+
+.card.animating {
+  transform: rotateY(11deg) scale(0.985);
+}
+
+.image-panel {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(120deg, #dbeafe, #fef3c7);
+  min-height: 260px;
+  overflow: hidden;
+}
+
+.image-panel img {
+  width: min(92%, 380px);
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgb(15 23 42 / 0.2));
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.text-panel {
+  padding: 1.2rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.word {
+  border: none;
+  border-radius: 14px;
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.word:hover,
+.word:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.word-en {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.word-local {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.hint {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.controls button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  background: #0f172a;
+  color: #f8fafc;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
