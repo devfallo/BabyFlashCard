@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280">
+  <rect width="420" height="280" rx="24" fill="#dbeafe"/>
+  <g>
+    <ellipse cx="180" cy="105" rx="68" ry="40" fill="#94a3b8"/>
+    <ellipse cx="250" cy="112" rx="72" ry="42" fill="#94a3b8"/>
+    <ellipse cx="220" cy="85" rx="60" ry="36" fill="#cbd5e1"/>
+  </g>
+  <g fill="#2563eb">
+    <path d="M150 160 C155 170,145 180,150 190 C160 180,160 170,150 160Z">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 28;0 0" dur="1.1s" repeatCount="indefinite"/>
+    </path>
+    <path d="M210 160 C215 170,205 180,210 190 C220 180,220 170,210 160Z">
+      <animateTransform attributeName="transform" type="translate" values="0 10;0 38;0 10" dur="0.9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M270 160 C275 170,265 180,270 190 C280 180,280 170,270 160Z">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 30;0 0" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

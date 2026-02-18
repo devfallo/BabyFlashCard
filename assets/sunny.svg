@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280">
+  <rect width="420" height="280" rx="24" fill="#dbeafe"/>
+  <circle cx="210" cy="140" r="54" fill="#fbbf24">
+    <animate attributeName="r" values="50;56;50" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <g stroke="#f59e0b" stroke-width="10" stroke-linecap="round">
+    <line x1="210" y1="42" x2="210" y2="18"/>
+    <line x1="210" y1="262" x2="210" y2="238"/>
+    <line x1="112" y1="140" x2="88" y2="140"/>
+    <line x1="332" y1="140" x2="308" y2="140"/>
+    <line x1="145" y1="75" x2="126" y2="56"/>
+    <line x1="294" y1="224" x2="275" y2="205"/>
+    <line x1="145" y1="205" x2="126" y2="224"/>
+    <line x1="294" y1="56" x2="275" y2="75"/>
+  </g>
+</svg>
