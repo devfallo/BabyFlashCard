@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280">
+  <rect width="420" height="280" rx="24" fill="#e0f2fe"/>
+  <g fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round">
+    <path d="M60 100 C130 80, 190 120, 260 100 C290 90, 320 94, 340 108">
+      <animate attributeName="d" dur="1.6s" repeatCount="indefinite" values="M60 100 C130 80, 190 120, 260 100 C290 90, 320 94, 340 108;M60 106 C130 126, 190 86, 260 106 C290 116, 320 112, 340 98;M60 100 C130 80, 190 120, 260 100 C290 90, 320 94, 340 108"/>
+    </path>
+    <path d="M80 150 C150 130, 220 170, 300 150 C325 142, 350 148, 365 162"/>
+    <path d="M50 198 C120 176, 180 214, 250 198 C278 188, 303 190, 324 204"/>
+  </g>
+</svg>

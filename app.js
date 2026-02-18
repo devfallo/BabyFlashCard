@@ -33,6 +33,16 @@ const dictionaries = {
       firefighter: '소방관',
       teacher: '선생님',
       police: '경찰관',
+      bus: '버스',
+      train: '기차',
+      airplane: '비행기',
+      bicycle: '자전거',
+      boat: '보트',
+      sunny: '맑음',
+      rainy: '비',
+      cloudy: '구름',
+      snowy: '눈',
+      windy: '바람',
     },
   },
   en: {
@@ -46,8 +56,9 @@ const categories = [
   {
     id: 'fruit',
     label: '🍎 과일',
+    audio: 'C4',
     cards: [
-      { key: 'apple', en: 'Apple', emoji: '🍎' },
+      { key: 'apple', en: 'Apple', emoji: '🍎', image: 'assets/apple.svg' },
       { key: 'banana', en: 'Banana', emoji: '🍌' },
       { key: 'strawberry', en: 'Strawberry', emoji: '🍓' },
       { key: 'grape', en: 'Grape', emoji: '🍇' },
@@ -57,8 +68,9 @@ const categories = [
   {
     id: 'animal',
     label: '🐶 동물',
+    audio: 'D4',
     cards: [
-      { key: 'cat', en: 'Cat', emoji: '🐱' },
+      { key: 'cat', en: 'Cat', emoji: '🐱', image: 'assets/cat.svg' },
       { key: 'dog', en: 'Dog', emoji: '🐶' },
       { key: 'rabbit', en: 'Rabbit', emoji: '🐰' },
       { key: 'lion', en: 'Lion', emoji: '🦁' },
@@ -68,6 +80,7 @@ const categories = [
   {
     id: 'sea',
     label: '🐬 해양동물',
+    audio: 'E4',
     cards: [
       { key: 'dolphin', en: 'Dolphin', emoji: '🐬' },
       { key: 'shark', en: 'Shark', emoji: '🦈' },
@@ -79,6 +92,7 @@ const categories = [
   {
     id: 'insect',
     label: '🦋 곤충',
+    audio: 'F4',
     cards: [
       { key: 'butterfly', en: 'Butterfly', emoji: '🦋' },
       { key: 'bee', en: 'Bee', emoji: '🐝' },
@@ -90,6 +104,7 @@ const categories = [
   {
     id: 'vegetable',
     label: '🥕 야채',
+    audio: 'G4',
     cards: [
       { key: 'carrot', en: 'Carrot', emoji: '🥕' },
       { key: 'tomato', en: 'Tomato', emoji: '🍅' },
@@ -101,12 +116,37 @@ const categories = [
   {
     id: 'job',
     label: '🧑‍🚒 직업',
+    audio: 'A4',
     cards: [
       { key: 'doctor', en: 'Doctor', emoji: '🩺' },
       { key: 'chef', en: 'Chef', emoji: '👨‍🍳' },
       { key: 'firefighter', en: 'Firefighter', emoji: '🧑‍🚒' },
       { key: 'teacher', en: 'Teacher', emoji: '🧑‍🏫' },
       { key: 'police', en: 'Police Officer', emoji: '👮' },
+    ],
+  },
+  {
+    id: 'transport',
+    label: '🚌 교통수단',
+    audio: 'B4',
+    cards: [
+      { key: 'bus', en: 'Bus', emoji: '🚌', image: 'assets/bus.svg' },
+      { key: 'train', en: 'Train', emoji: '🚆', image: 'assets/train.svg' },
+      { key: 'airplane', en: 'Airplane', emoji: '✈️', image: 'assets/airplane.svg' },
+      { key: 'bicycle', en: 'Bicycle', emoji: '🚲', image: 'assets/bicycle.svg' },
+      { key: 'boat', en: 'Boat', emoji: '🚤', image: 'assets/boat.svg' },
+    ],
+  },
+  {
+    id: 'weather',
+    label: '🌦️ 날씨',
+    audio: 'C5',
+    cards: [
+      { key: 'sunny', en: 'Sunny', emoji: '☀️', image: 'assets/sunny.svg' },
+      { key: 'rainy', en: 'Rainy', emoji: '🌧️', image: 'assets/rainy.svg' },
+      { key: 'cloudy', en: 'Cloudy', emoji: '☁️', image: 'assets/cloudy.svg' },
+      { key: 'snowy', en: 'Snowy', emoji: '❄️', image: 'assets/snowy.svg' },
+      { key: 'windy', en: 'Windy', emoji: '🌬️', image: 'assets/windy.svg' },
     ],
   },
 ];
@@ -126,6 +166,7 @@ let enEl;
 let localEl;
 let infoEl;
 let changeCategoryBtn;
+let soundBtn;
 
 let currentCategory = null;
 let currentCards = [];
@@ -142,6 +183,47 @@ function speak(text, lang) {
   window.speechSynthesis.speak(utterance);
 }
 
+function playCategoryAudio() {
+  if (!currentCategory?.audio) return;
+
+  const noteFrequencies = {
+    C4: 261.63,
+    D4: 293.66,
+    E4: 329.63,
+    F4: 349.23,
+    G4: 392,
+    A4: 440,
+    B4: 493.88,
+    C5: 523.25,
+  };
+
+  const frequency = noteFrequencies[currentCategory.audio];
+  if (!frequency) return;
+
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return;
+
+  const context = new AudioContextClass();
+  const oscillator = context.createOscillator();
+  const gainNode = context.createGain();
+
+  oscillator.type = 'triangle';
+  oscillator.frequency.value = frequency;
+
+  gainNode.gain.setValueAtTime(0.0001, context.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.24, context.currentTime + 0.02);
+  gainNode.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.42);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(context.destination);
+  oscillator.start();
+  oscillator.stop(context.currentTime + 0.45);
+
+  oscillator.onended = () => {
+    context.close().catch(() => null);
+  };
+}
+
 function animateCard() {
   cardEl.classList.add('animating');
   setTimeout(() => cardEl.classList.remove('animating'), 280);
@@ -156,8 +238,11 @@ function render() {
   if (!currentCards.length) return;
 
   const item = currentCards[currentIndex];
-  imageEl.src = emojiSvgDataUri(item.emoji);
+  imageEl.src = item.image || emojiSvgDataUri(item.emoji);
   imageEl.alt = `${item.en} illustration`;
+  imageEl.onerror = () => {
+    imageEl.src = emojiSvgDataUri(item.emoji);
+  };
 
   enEl.textContent = item.en;
   const localWord = selectedLanguage.words[item.key] || item.en;
@@ -187,6 +272,7 @@ function startCategory(categoryId) {
   flashScreenEl.classList.remove('hidden');
   currentCategoryEl.textContent = `현재 카테고리: ${currentCategory.label}`;
   render();
+  playCategoryAudio();
 }
 
 function showCategoryScreen() {
@@ -205,6 +291,7 @@ function renderCategories() {
     categoryGridEl.appendChild(button);
   });
 }
+
 function handleSwipe(endX) {
   const deltaX = endX - startX;
   const threshold = 45;
@@ -252,6 +339,7 @@ function init() {
   localEl = document.getElementById('word-local');
   infoEl = document.getElementById('language-info');
   changeCategoryBtn = document.getElementById('change-category');
+  soundBtn = document.getElementById('play-sound');
 
   if (
     !categoryScreenEl ||
@@ -264,7 +352,8 @@ function init() {
     !enEl ||
     !localEl ||
     !infoEl ||
-    !changeCategoryBtn
+    !changeCategoryBtn ||
+    !soundBtn
   ) {
     return;
   }
@@ -272,6 +361,7 @@ function init() {
   document.getElementById('prev').addEventListener('click', () => move(-1));
   document.getElementById('next').addEventListener('click', () => move(1));
   changeCategoryBtn.addEventListener('click', showCategoryScreen);
+  soundBtn.addEventListener('click', playCategoryAudio);
 
   document.addEventListener('keydown', (event) => {
     if (flashScreenEl.classList.contains('hidden')) return;

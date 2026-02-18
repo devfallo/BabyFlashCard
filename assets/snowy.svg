@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280">
+  <rect width="420" height="280" rx="24" fill="#dbeafe"/>
+  <g fill="#f8fafc" stroke="#94a3b8" stroke-width="2">
+    <g transform="translate(140 90)">
+      <path d="M0 -18 V18 M-15 -9 L15 9 M-15 9 L15 -9"/>
+      <animateTransform attributeName="transform" type="translate" values="140 90;140 220" dur="2.4s" repeatCount="indefinite"/>
+    </g>
+    <g transform="translate(210 70)">
+      <path d="M0 -16 V16 M-14 -8 L14 8 M-14 8 L14 -8"/>
+      <animateTransform attributeName="transform" type="translate" values="210 70;210 215" dur="2.1s" repeatCount="indefinite"/>
+    </g>
+    <g transform="translate(280 95)">
+      <path d="M0 -18 V18 M-15 -9 L15 9 M-15 9 L15 -9"/>
+      <animateTransform attributeName="transform" type="translate" values="280 95;280 225" dur="2.7s" repeatCount="indefinite"/>
+    </g>
+  </g>
+</svg>
