@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="ball illustration">
+  <rect width="320" height="240" rx="24" fill="#e8f8ff"/>
+  <circle cx="160" cy="122" r="74" fill="#ffffff" stroke="#232323" stroke-width="8"/>
+  <path d="M160 48a74 74 0 0 0 0 148" fill="none" stroke="#ff5c5c" stroke-width="8"/>
+  <path d="M160 48a74 74 0 0 1 0 148" fill="none" stroke="#4f89ff" stroke-width="8"/>
+</svg>

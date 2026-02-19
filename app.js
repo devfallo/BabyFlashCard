@@ -43,6 +43,16 @@ const dictionaries = {
       cloudy: '구름',
       snowy: '눈',
       windy: '바람',
+      bed: '침대',
+      chair: '의자',
+      table: '테이블',
+      lamp: '램프',
+      clock: '시계',
+      ball: '공',
+      kite: '연',
+      swings: '그네',
+      slide: '미끄럼틀',
+      sandbox: '모래놀이터',
     },
   },
   en: {
@@ -59,7 +69,7 @@ const categories = [
     audio: 'C4',
     cards: [
       { key: 'apple', en: 'Apple', emoji: '🍎', image: 'assets/apple.svg' },
-      { key: 'banana', en: 'Banana', emoji: '🍌' },
+      { key: 'banana', en: 'Banana', emoji: '🍌', image: 'assets/banana.svg' },
       { key: 'strawberry', en: 'Strawberry', emoji: '🍓' },
       { key: 'grape', en: 'Grape', emoji: '🍇' },
       { key: 'watermelon', en: 'Watermelon', emoji: '🍉' },
@@ -71,7 +81,7 @@ const categories = [
     audio: 'D4',
     cards: [
       { key: 'cat', en: 'Cat', emoji: '🐱', image: 'assets/cat.svg' },
-      { key: 'dog', en: 'Dog', emoji: '🐶' },
+      { key: 'dog', en: 'Dog', emoji: '🐶', image: 'assets/dog.svg' },
       { key: 'rabbit', en: 'Rabbit', emoji: '🐰' },
       { key: 'lion', en: 'Lion', emoji: '🦁' },
       { key: 'elephant', en: 'Elephant', emoji: '🐘' },
@@ -149,6 +159,30 @@ const categories = [
       { key: 'windy', en: 'Windy', emoji: '🌬️', image: 'assets/windy.svg' },
     ],
   },
+  {
+    id: 'home',
+    label: '🛋️ 집안 물건',
+    audio: 'D5',
+    cards: [
+      { key: 'bed', en: 'Bed', emoji: '🛏️', image: 'assets/bed.svg' },
+      { key: 'chair', en: 'Chair', emoji: '🪑', image: 'assets/chair.svg' },
+      { key: 'table', en: 'Table', emoji: '🪵', image: 'assets/table.svg' },
+      { key: 'lamp', en: 'Lamp', emoji: '💡', image: 'assets/lamp.svg' },
+      { key: 'clock', en: 'Clock', emoji: '🕒', image: 'assets/clock.svg' },
+    ],
+  },
+  {
+    id: 'playground',
+    label: '🛝 놀이터',
+    audio: 'E5',
+    cards: [
+      { key: 'ball', en: 'Ball', emoji: '⚽', image: 'assets/ball.svg' },
+      { key: 'kite', en: 'Kite', emoji: '🪁', image: 'assets/kite.svg' },
+      { key: 'swings', en: 'Swings', emoji: '🎠', image: 'assets/swings.svg' },
+      { key: 'slide', en: 'Slide', emoji: '🛝' },
+      { key: 'sandbox', en: 'Sandbox', emoji: '🏖️' },
+    ],
+  },
 ];
 
 const browserLanguage = (navigator.language || 'en').toLowerCase();
@@ -173,6 +207,19 @@ let currentCards = [];
 let currentIndex = 0;
 let startX = 0;
 
+const noteFrequencies = {
+  C4: 261.63,
+  D4: 293.66,
+  E4: 329.63,
+  F4: 349.23,
+  G4: 392,
+  A4: 440,
+  B4: 493.88,
+  C5: 523.25,
+  D5: 587.33,
+  E5: 659.25,
+};
+
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
@@ -185,17 +232,6 @@ function speak(text, lang) {
 
 function playCategoryAudio() {
   if (!currentCategory?.audio) return;
-
-  const noteFrequencies = {
-    C4: 261.63,
-    D4: 293.66,
-    E4: 329.63,
-    F4: 349.23,
-    G4: 392,
-    A4: 440,
-    B4: 493.88,
-    C5: 523.25,
-  };
 
   const frequency = noteFrequencies[currentCategory.audio];
   if (!frequency) return;
@@ -222,6 +258,15 @@ function playCategoryAudio() {
   oscillator.onended = () => {
     context.close().catch(() => null);
   };
+}
+
+function playWordAudio() {
+  if (!currentCards.length) return;
+  const item = currentCards[currentIndex];
+  const localWord = selectedLanguage.words[item.key] || item.en;
+
+  speak(item.en, 'en-US');
+  setTimeout(() => speak(localWord, selectedLanguage.locale), 850);
 }
 
 function animateCard() {
@@ -361,7 +406,7 @@ function init() {
   document.getElementById('prev').addEventListener('click', () => move(-1));
   document.getElementById('next').addEventListener('click', () => move(1));
   changeCategoryBtn.addEventListener('click', showCategoryScreen);
-  soundBtn.addEventListener('click', playCategoryAudio);
+  soundBtn.addEventListener('click', playWordAudio);
 
   document.addEventListener('keydown', (event) => {
     if (flashScreenEl.classList.contains('hidden')) return;

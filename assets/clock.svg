@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="clock illustration">
+  <rect width="320" height="240" rx="24" fill="#eef2ff"/>
+  <circle cx="160" cy="122" r="70" fill="#ffffff" stroke="#6f7dbf" stroke-width="12"/>
+  <line x1="160" y1="122" x2="160" y2="84" stroke="#364680" stroke-width="8" stroke-linecap="round"/>
+  <line x1="160" y1="122" x2="188" y2="138" stroke="#364680" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="160" cy="122" r="6" fill="#364680"/>
+</svg>
