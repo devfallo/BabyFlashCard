@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="lamp illustration">
+  <rect width="320" height="240" rx="24" fill="#fffde8"/>
+  <path d="M100 92h120l-24 58h-72z" fill="#ffd86b"/>
+  <rect x="150" y="150" width="20" height="38" rx="6" fill="#8e8e8e"/>
+  <rect x="120" y="184" width="80" height="16" rx="8" fill="#6f6f6f"/>
+  <circle cx="160" cy="78" r="10" fill="#ffcb3d"/>
+</svg>

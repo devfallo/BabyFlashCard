@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="bed illustration">
+  <rect width="320" height="240" rx="24" fill="#eef8ff"/>
+  <rect x="52" y="104" width="216" height="74" rx="16" fill="#8bb6ff"/>
+  <rect x="52" y="84" width="80" height="32" rx="12" fill="#ffffff"/>
+  <rect x="142" y="120" width="112" height="38" rx="12" fill="#d7e6ff"/>
+  <rect x="44" y="74" width="14" height="118" rx="5" fill="#8a5a3f"/>
+  <rect x="262" y="98" width="14" height="94" rx="5" fill="#8a5a3f"/>
+</svg>

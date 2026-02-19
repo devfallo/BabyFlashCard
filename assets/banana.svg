@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="banana illustration">
+  <rect width="320" height="240" rx="24" fill="#fdf6d9"/>
+  <path d="M70 160c30 40 130 52 190-20" fill="none" stroke="#f4c430" stroke-width="34" stroke-linecap="round"/>
+  <path d="M84 154c24 29 104 38 160-16" fill="none" stroke="#ffe27a" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="64" cy="156" r="8" fill="#7a4f21"/>
+  <circle cx="266" cy="140" r="7" fill="#7a4f21"/>
+</svg>
