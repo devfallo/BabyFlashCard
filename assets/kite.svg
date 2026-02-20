@@ -1,8 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="kite illustration">
-  <rect width="320" height="240" rx="24" fill="#eaf6ff"/>
-  <path d="M160 42l62 80-62 80-62-80z" fill="#ff7f7f"/>
-  <path d="M160 42v160" stroke="#ffffff" stroke-width="6"/>
-  <path d="M98 202c26 12 42 30 58 32" fill="none" stroke="#5f5f5f" stroke-width="4"/>
-  <circle cx="122" cy="216" r="6" fill="#ffd15c"/>
-  <circle cx="144" cy="228" r="6" fill="#7ad67a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" role="img" aria-label="kite">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="260" rx="28" fill="url(#bg)"/>
+  <circle cx="180" cy="130" r="84" fill="#ffffff" opacity="0.92"/>
+  <text x="180" y="145" text-anchor="middle" font-size="86">🪁</text>
 </svg>
